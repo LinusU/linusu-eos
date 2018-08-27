@@ -4,7 +4,7 @@
 ./cleos.sh wallet create --file=/default-wallet-password
 
 # Read out password
-PASSWORD="$(docker exec -it eosio cat /default-wallet-password | tr -d '[:space:]' | sed -e 's/^"//' -e 's/"$//')"
+PASSWORD="$(docker exec -it eosio cat /default-wallet-password | tr -d '[:space:"]')"
 echo "Password: $PASSWORD"
 
 # Unlock default wallet
