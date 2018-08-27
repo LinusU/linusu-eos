@@ -25,6 +25,7 @@ echo "Private Key: $PRIVATE_KEY"
 
 # Import Key
 ACCOUNT_NAME="$(./cleos.sh wallet import --private-key "$PRIVATE_KEY" | cut -c 27- | tr -d '[:space:]')"
+docker exec -it eosio bash -c 'echo -n "'"$ACCOUNT_NAME"'" > /account-name'
 echo "Account Name: $ACCOUNT_NAME"
 
 # Create Accounts
