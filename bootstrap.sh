@@ -4,7 +4,7 @@
 ./cleos.sh wallet create --file=/default-wallet-password
 
 # Read out password
-PASSWORD="$(docker exec -it eosio cat /default-wallet-password | awk -F. '{printf($1)}' | sed -e 's/^"//' -e 's/"$//')"
+PASSWORD="$(docker exec -it eosio cat /default-wallet-password | tr -d '[:space:]' | sed -e 's/^"//' -e 's/"$//')"
 echo "Password: $PASSWORD"
 
 # Unlock default wallet
@@ -20,11 +20,11 @@ echo "Password: $PASSWORD"
 ./cleos.sh create key --file=/default-key
 
 # Read Out Key
-PRIVATE_KEY="$(docker exec -it eosio head -n 1 /default-key | cut -c 14- | awk -F. '{printf($1)}')"
+PRIVATE_KEY="$(docker exec -it eosio head -n 1 /default-key | cut -c 14- | tr -d '[:space:]')"
 echo "Private Key: $PRIVATE_KEY"
 
 # Import Key
-ACCOUNT_NAME="$(./cleos.sh wallet import --private-key "$PRIVATE_KEY" | cut -c 27- | awk -F. '{printf($1)}')"
+ACCOUNT_NAME="$(./cleos.sh wallet import --private-key "$PRIVATE_KEY" | cut -c 27- | tr -d '[:space:]')"
 echo "Account Name: $ACCOUNT_NAME"
 
 # Create Accounts
@@ -48,3 +48,6 @@ echo "Account Name: $ACCOUNT_NAME"
 # https://developers.eos.io/eosio-cpp/docs/token-tutorial#section-deploy-eosio-msig-contract
 ./cleos.sh create account eosio eosio.msig "$ACCOUNT_NAME"
 ./cleos.sh set contract eosio.msig contracts/eosio.msig -p eosio.msig@active
+
+# Create Hello User
+./cleos.sh create account eosio hello.code "$ACCOUNT_NAME"

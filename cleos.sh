@@ -1,1 +1,2 @@
-docker exec -it eosio /opt/eosio/bin/cleos -u http://localhost:8888 "$@"
+#!/bin/bash
+exec docker exec -it eosio /opt/eosio/bin/cleos -u http://localhost:8888 "$@"
