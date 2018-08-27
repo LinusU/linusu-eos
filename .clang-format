@@ -1,1 +1,4 @@
 BasedOnStyle: LLVM
+
+AllowShortFunctionsOnASingleLine: None
+ColumnLimit: 200

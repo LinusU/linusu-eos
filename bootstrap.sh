@@ -52,3 +52,6 @@ echo "Account Name: $ACCOUNT_NAME"
 
 # Create Hello User
 ./cleos.sh create account eosio hello.code "$ACCOUNT_NAME"
+
+# Create Tic Tac Toe User
+./cleos.sh create account eosio tic.tac.toe "$ACCOUNT_NAME"
